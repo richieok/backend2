@@ -1,0 +1,20 @@
+{
+  "name": "backend2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@godaddy/terminus": "^4.4.1",
+    "dbase": "file:my_modules/dbase",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}
