@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@godaddy/terminus": "^4.4.1",
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
     "dbase": "file:my_modules/dbase",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
