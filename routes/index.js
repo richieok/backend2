@@ -1,4 +1,5 @@
 const Router = require('express').Router();
+const requestIp = require('request-ip');
 const {init} = require('dbase');
 
 Router.get('/', (req, res)=>{
@@ -28,6 +29,13 @@ Router.get('/products', async (req, res)=>{
     } catch(e){
         console.log(e);
     }
+});
+
+Router.get('/ipaddress', (req, res)=>{
+    const clientIp = requestIp.getClientIp(req);
+    res.json({
+        ip: clientIp
+    });
 });
 
 module.exports = Router;

@@ -6,6 +6,12 @@ require('dotenv').config();
 
 const { PORT } = process.env;
 const port = PORT || 5505;
+const allowed_origins = [
+    'http://localhost', 
+    'https://localhost', 
+    'https://qubitcreative.com.ng', 
+    'http://qubitcreative.com.ng'
+];
 
 const index = require('./routes/index');
 const verify = require('./routes/verify');
@@ -18,6 +24,21 @@ app.use(cookieSession({
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+const ACA = 'Access-Control-Allow';
+const REMOTE_PORT = process.env.REMOTE_PORT;
+const REMOTE_SITE = process.env.REMOTE_SITE;
+
+app.use((req, res, next)=>{
+    if (allowed_origins.includes(req.headers.origin)){
+        console.log('origin has access');
+        res.set(`${ACA}-Origin`, `${req.headers.origin}:${REMOTE_PORT}`);
+        res.set(`${ACA}-Headers`, 'content-type, authorization');
+        res.set(`${ACA}-Methods`, 'POST, GET, OPTIONS');
+        res.set(`${ACA}-Credentials`, 'true');
+    }
+    next();
+});
 
 app.use('/', index);
 app.use('/verify', verify);
